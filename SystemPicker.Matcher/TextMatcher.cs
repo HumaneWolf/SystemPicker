@@ -1,32 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SystemPicker.Matcher.SystemApis;
 
 namespace SystemPicker.Matcher
 {
     public class TextMatcher
     {
         private readonly HttpClient _client;
+        private readonly ISystemApi _systemApi;
 
         public TextMatcher(HttpClient client)
         {
             _client = client;
+            _systemApi = new RandomSystemApi(_client);
         }
 
-        public async Task<SystemMatch> FindSystemMatches(string text)
+        public async Task<List<SystemMatch>> FindSystemMatches(string text)
         {
-            throw new NotImplementedException();
+            var candidates = FindProcGenSystemCandidates(text);
+            candidates.AddRange(FindCatalogSystemCandidates(text));
+            candidates.AddRange(FindNamedSystemCandidates(text));
+
+            // duplicate prevention.
+            var matches = new Dictionary<string, SystemMatch>();
+            foreach (var candidate in candidates)
+            {
+                if (!matches.ContainsKey(candidate.ToLower()))
+                {
+                    var match = await _systemApi.GetKnownMatch(candidate);
+                    if (match != null)
+                    {
+                        matches.Add(candidate.ToLower(), match);
+                    }                    
+                }
+            }
+
+            return matches.Values.ToList();
         }
 
         public List<string> FindNamedSystemCandidates(string text)
         {
-            throw new NotImplementedException();
+            // todo
+            return new ();
+        }
+
+        public List<string> FindCatalogSystemCandidates(string text)
+        {
+            // todo
+            return new();
         }
         
         public List<string> FindProcGenSystemCandidates(string text)
         {
-            throw new NotImplementedException();
+            var procGen = new ProcGenExpressionGenerator();
+            var regex = procGen.GenerateProcGenRegex()
+                .Select(r => new Regex(r, RegexOptions.Compiled | RegexOptions.IgnoreCase));
+
+            var candidates = new List<string>();
+            foreach (var rx in regex)
+            {
+                var matches = rx.Matches(text);
+
+                foreach (Match match in matches)
+                {
+                    candidates.Add(match.Value);
+                }
+            }
+
+            return candidates;
         }
     }
 }

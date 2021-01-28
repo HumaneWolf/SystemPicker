@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Post1" xml:space="preserve">
+        <value>[Day 1's post](https://www.reddit.com/r/EliteDangerous/comments/l5tqcj/flying_to_sag_a_without_a_fuel_scoop_day_1/)
+
+I love doing repetitive things. The same actions, the same music, the same sights. It's a chance to turn autopilot on and focus on thinking about something else. The task still gets done, I just don't have to pay much attention to it.
+
+So listening to Josh A's *Disgrace* was a great chance to turn autopilot on, keep jumping, and think about the feasibility of this trip.
+
+The only data I have about jump range and fuel efficiency comes from the first day, when I'm expecting the fuel efficiency to be at its worst. *Apollo* is a great ship, and I know once it drops some weight its fuel efficiency will become great.
+
+...But the 1st day has some pretty bad fuel efficiency. An average of 0.03 T / LY means that on 468 T of fuel, I'm expecting to hit 14,000 LY.
+
+Will fuel efficiency double over the course of the trip? Fuel efficiency is based on max jump range, and the fuel use goes up exponentially as you approach your max jump range. So a small boost to jump range gives a big boost to fuel efficiency, shouldn't it? I'm going lower and lower on the exponential curve...
+
+I think if star density improves and my max range goes up, there's potential for much more efficient travel. I don't know enough about the density of systems in the galaxy along my route, however, so this becomes impossible for me to estimate or predict. If anyone has data on star density north of the Bubble, I'd be interested in seeing it.
+
+---
+
+Starting location: PRAEA EUQ JL-J C23-3 - 942 LY / ~26,000
+
+Ending location: BLU THUA IH-B B1-0 - 1,193 / ~26,000
+
+Starting fuel: ~437 / 468 T
+
+Ending fuel: 428.5 / 468 T
+
+Starting jump range: 47.72 LY
+
+Ending jump range: 48.06 LY
+
+Got up early today, trying to get some jumps in before class. Immediately, I noticed that the plotter is trying to take me in a more direct line than yesterday. It's still preferring shorter jumps, but rather than taking 3-4 5 LY jumps, it's giving me one 15 LY jump to get across a gap. I'm not sure that one 15 LY jump is more fuel efficient than four 5 LY jumps, but I'm not going to disobey the plotter.
+
+Rebound my keys. J to jump is annoying to reach, so it's on a mouse button now. Same with 'Set throttle to 100%' since I use it so often. I'm getting good at this! Takes a lot of skill to jump into a system and jump out of it while following a pre-plotted route!
+
+I'm joking of course, anyone can do this. You should do this. Make bad decisions like I do! I'll be updating this in the afternoon / night with further jumps, as I've got to go to class now.
+
+o7
+
+---
+
+Update: Day 2.5, the night shift
+
+Starting location: BLU THUA IH-B B1-0 - 1,193 / ~26,000
+
+Ending Location: BLU THUA NE-G C11-3 - 1,665 / ~26,000
+
+Starting Fuel: 428.5 / 468 T
+
+Ending Fuel: 417 / 468 T
+
+Starting jump range: 48.06
+
+Ending jump range: 48.51
+
+I've made a [Google Sheets](https://docs.google.com/spreadsheets/d/1PIXh3RuSctZINwhhbgFtCflcO857qzkKwKlFJvEp580/edit?usp=sharing) for those interested in seeing the data in one place! Also, this leg's fuel efficiency was *ridiculous* compared to the other two legs so far.  I wonder what the hell that's about? I went 33% further than previous estimates would've put me on the same amount of fuel.
+
+I'm heading off for the night, and I'll make another few jumps in the morning. o7</value>
+    </data>
+    <data name="Post2" xml:space="preserve">
+        <value>[Day 2 Post](https://www.reddit.com/r/EliteDangerous/comments/l67wpu/flying_to_sag_a_without_a_fuel_scoop_day_2/?ref=share&amp;ref_source=link) -- [Ship's Data Log](https://docs.google.com/spreadsheets/d/1PIXh3RuSctZINwhhbgFtCflcO857qzkKwKlFJvEp580/edit?usp=sharing) -- [Apollo's Build](https://edsy.org/s/vc6qgwH)
+
+I've got a love-hate relationship with the Anaconda. Mechanically speaking, nothing comes close to it for exploration. It's got the jump range, the options for outfitting, and the profile of a proper exploration ship. Just *look at it!* It looks like something that cuts through deep space to find its prize, then goes back to report the find of another Earth Like World to the Federation.
+
+It was my dream ship when I started playing, and I grinded to get the ship as a crown jewel of my exploration fleet. Took me a few hours of trading. More than a few. I was pretty bad at trading.
+
+The issue is that I don't actually enjoy using the damn thing. The cockpit is closed in, the front of the ship gets in the way of the view, and its handling in supercruise is tolerable at best. I love it in theory, I don't love it in practice. I love the ship, but it's not something I go exploring in for fun.
+
+With that out of the way, let me actually tell you what I'm doing.
+
+The Bubble. Sagittarius A. There are ~26,000 light years separating them, and traveling to Sag A is a milestone for many explorers. I've made the trek a few times in capable ships, including the Anaconda.
+
+But what if I wanted to go there without a fuel scoop? Is that even possible? How could I carry enough fuel to make it a thousand light years, let alone 26,000?
+
+Well, the Anaconda has a trick: It's obscenely good at carrying cargo long distances. Fully loaded, a minimally engineered Anaconda *still* has a jump range of 46 LY. This, along with the fact that fuel consumption per jump is tied to max jump range, means that the Anaconda can carry its fuel and still efficiently use it.
+
+So let's put that carrying capacity to good use, and make it a fuel tanker. Here's what I put together, the *Apollo*, the ship that I'll be friends with for up to 26,000 light years
+
+https://edsy.org/s/vc6qgwH
+
+So I've set this challenge for myself. I know of a few ways to make it trivial, so let's set some rules.
+
+1. DSSA carriers are legal for repair and refit. They're places to pause and see how the travel is going. If it's obvious one tank won't make it, then refuels will be allowed.
+
+2. This is a solo adventure. No fuel donations from friends or rides on carriers.
+
+3. No landing at stations. There are several stations in between the bubble and Sag A that would make the legs a lot shorter.
+
+I'll be reaching 500-1,000 LY from the Bubble today, if everything goes well. I'll update with fuel usage and general feelings about the trip.
+
+---
+
+Starting location: Quince - 0 LY / ~26,000
+
+Ending location: PRAEA EUQ JL-J C23-3 - 942 LY / ~26,000
+
+Starting fuel: 468/468 T
+
+Ending fuel: ~437/468 T
+
+Starting jump range: 46.55 LY
+
+Ending jump range: 47.72 LY
+
+Realized how much fuel would be drained just by the few modules that take power, turned off all non-essential modules except supercruise assist for Hyperspace Dethrottle. 1.49 tons consumed per hour. That's bad.
+
+Internet is acting up, progress is fairly slow. The fuel efficiency also isn't great, with only a 46.55 LY jump going 5-10 LY takes a fair amount of fuel.
+
+I'm excited to be finished with the first 1k LY leg though, only 25 left to go. I'm on 93.3% fuel, with 96.3% of the trip ahead of me. My fuel efficiency should only go up as the trip continues due to Apollo not being weighed down by the fuel and the stars becoming denser, so I'm not worried about running out at this point.</value>
+    </data>
+    <data name="TestComment3" xml:space="preserve">
+        <value>Ah but the supercruise assist module is invaluable to the multitasking commander such as myself! Furthermore, it can be manipulated in such a way to drop out at your destination faster than traditional means since it will drop you out of supercruise even if your speed exceeds the recommended drop out speed! It just so happens that in this case it decided to shove me directly through the station, miraculously without any damage done to myself or the station...
+</value>
+    </data>
+    <data name="TestComment4" xml:space="preserve">
+        <value>I found your Problem Epic New Commader o7.
+
+Your wasting a 1 slot on a "supercrud assistance program".
+
+Might I suggest replacing it with: Anything else
+
+-Lakon Marketing Division, Keelback Office-'If you Kan't do it in a KeelBack, you're just not that good'
+</value>
+    </data>
+</root>

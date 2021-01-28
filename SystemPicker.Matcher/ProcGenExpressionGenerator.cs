@@ -51,15 +51,13 @@ namespace SystemPicker.Matcher
         
         // Regex matching groups
         private static string PrefixGroup => $"(?:{string.Join("|", Prefixes)})";
-        private static string Infix1Group => $"(?:{string.Join("|", Infixes1)})";
-        private static string Infix2Group => $"(?:{string.Join("|", Infixes2)})";
-        private static string Suffix1Group => $"(?:{string.Join("|", Suffixes1)})";
-        private static string Suffix2Group => $"(?:{string.Join("|", Suffixes2)})";
+        private static string InfixGroup => $"(?:{string.Join("|", Infixes1)}|{string.Join("|", Infixes2)})";
+        private static string SuffixGroup => $"(?:{string.Join("|", Suffixes1)}|{string.Join("|", Suffixes2)})";
 
         // Sector name regex
-        private static string Class1ShortRegex => $"{PrefixGroup}{Infix1Group}{Suffix2Group}";
-        private static string Class1LongRegex => $"{PrefixGroup}{Infix1Group}{Infix2Group}{Suffix1Group}";
-        private static string Class2Regex => $"{PrefixGroup}{Suffix1Group} {PrefixGroup}{Suffix2Group}";
+        private static string Class1ShortRegex => $"{PrefixGroup}{InfixGroup}{SuffixGroup}";
+        private static string Class1LongRegex => $"{PrefixGroup}{InfixGroup}{InfixGroup}{SuffixGroup}";
+        private static string Class2Regex => $"{PrefixGroup}{SuffixGroup} {PrefixGroup}{SuffixGroup}";
         
         // System identifier regex
         private static readonly string SystemIdRegex = "[A-Za-z][A-Za-z]-[A-Za-z] [A-Ha-h][0-9]+(?:-[0-9]+)?";
