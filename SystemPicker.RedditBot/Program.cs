@@ -1,4 +1,5 @@
 ﻿using System;
+using SystemPicker.Matcher;
 
 namespace SystemPicker.RedditBot
 {
@@ -6,7 +7,14 @@ namespace SystemPicker.RedditBot
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var procGen = new ProcGenExpressionGenerator();
+            var expressions = procGen.GenerateProcGenRegex();
+
+            foreach (var e in expressions)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine();
+            }
         }
     }
 }
