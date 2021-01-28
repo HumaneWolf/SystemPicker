@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SystemPicker.Matcher;
+using SystemPicker.Matcher.SystemApis;
 using Xunit;
 
 namespace SystemPicker.Tests.Matcher
@@ -11,7 +12,7 @@ namespace SystemPicker.Tests.Matcher
     {
         private Task<List<SystemMatch>> ScanText(string text)
         {
-            var matcher = new TextMatcher(new HttpClient());
+            var matcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
             return matcher.FindSystemMatches(text);
         }
         

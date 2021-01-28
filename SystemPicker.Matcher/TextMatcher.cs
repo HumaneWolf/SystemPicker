@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SystemPicker.Matcher.SystemApis;
@@ -10,13 +8,11 @@ namespace SystemPicker.Matcher
 {
     public class TextMatcher
     {
-        private readonly HttpClient _client;
         private readonly ISystemApi _systemApi;
 
-        public TextMatcher(HttpClient client)
+        public TextMatcher(ISystemApi systemApi)
         {
-            _client = client;
-            _systemApi = new RandomSystemApi(_client);
+            _systemApi = systemApi;
         }
 
         public async Task<List<SystemMatch>> FindSystemMatches(string text)
