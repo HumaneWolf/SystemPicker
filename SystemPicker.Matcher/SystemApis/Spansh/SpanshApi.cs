@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.Utils;
 
 namespace SystemPicker.Matcher.SystemApis.Spansh

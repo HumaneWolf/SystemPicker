@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SystemPicker.Matcher;
+using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.SystemApis;
 using Xunit;
 
@@ -60,7 +61,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Equal("Blu Thua NE-G c11-3", match.Name);
         }
         
-        [Fact(Skip = "Not yet implemented.")]
+        [Fact]
         public async Task String_is_system_name_catalog()
         {
             var result = await ScanText("hip 100002");
@@ -82,7 +83,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Equal("Sol", match.Name);
         }
 
-        [Fact(Skip = "Not yet implemented.")]
+        [Fact]
         public async Task Extract_from_comment_1()
         {
             // https://www.reddit.com/r/EliteDangerous/comments/l5z277/sorcery_14_stars_and_3_black_holes_in_1_system/gkxb3df/
@@ -95,7 +96,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Equal("HIP 63835", match.Name);
         }
         
-        [Fact(Skip = "Not yet implemented.")]
+        [Fact]
         public async Task Extract_from_comment_2()
         {
             // https://www.reddit.com/r/EliteDangerous/comments/l5z277/sorcery_14_stars_and_3_black_holes_in_1_system/gkx9py7/

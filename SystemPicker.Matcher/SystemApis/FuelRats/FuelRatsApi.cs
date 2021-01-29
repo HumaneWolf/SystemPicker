@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Web;
+using SystemPicker.Matcher.Models;
 
 namespace SystemPicker.Matcher.SystemApis.FuelRats
 {

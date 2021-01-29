@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using SystemPicker.Matcher.Models;
 
 namespace SystemPicker.Matcher.SystemApis
 {

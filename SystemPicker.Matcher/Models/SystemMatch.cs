@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace SystemPicker.Matcher
+namespace SystemPicker.Matcher.Models
 {
     public class SystemMatch
     {

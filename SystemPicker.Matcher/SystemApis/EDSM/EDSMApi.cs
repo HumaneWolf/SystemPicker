@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.Utils;
 
 namespace SystemPicker.Matcher.SystemApis.EDSM

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.SystemApis;
 
 namespace SystemPicker.Matcher
@@ -46,8 +47,11 @@ namespace SystemPicker.Matcher
 
         public List<string> FindCatalogSystemCandidates(string text)
         {
-            // todo
-            return new();
+            var catalog = new CatalogFinder();
+            var regex = catalog.GenerateCatalogRegex()
+                .Select(r => new Regex(r, RegexOptions.Compiled | RegexOptions.IgnoreCase));
+            
+            return regex.SelectMany(rx => rx.Matches(text).Select(m => m.Value)).ToList();
         }
         
         public List<string> FindProcGenSystemCandidates(string text)
@@ -56,18 +60,7 @@ namespace SystemPicker.Matcher
             var regex = procGen.GenerateProcGenRegex()
                 .Select(r => new Regex(r, RegexOptions.Compiled | RegexOptions.IgnoreCase));
 
-            var candidates = new List<string>();
-            foreach (var rx in regex)
-            {
-                var matches = rx.Matches(text);
-
-                foreach (Match match in matches)
-                {
-                    candidates.Add(match.Value);
-                }
-            }
-
-            return candidates;
+            return regex.SelectMany(rx => rx.Matches(text).Select(m => m.Value)).ToList();
         }
     }
 }

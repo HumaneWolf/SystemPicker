@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.SystemApis.EDSM;
 using SystemPicker.Matcher.SystemApis.FuelRats;
 using SystemPicker.Matcher.SystemApis.Spansh;
