@@ -51,10 +51,18 @@ namespace SystemPicker.Matcher
             "ln", "bs", "rsts", "gs", "ls", "vvy", "lt", "rks", "qs", "rps", "gy", "wns", "lz", "nth", "phs"
         };
         
+        // Custom sector names
+        private static List<string> SpecialNames = new()
+        {
+            "[A-Z][0-9]+","Corona Austr. Dark", @"Pipe \(stem\)", "LBN [0-9]+",
+            "Blanco 1", "NGC [0-9]+[A-Z]",
+        };
+        
         // Regex matching groups
         private static string PrefixGroup => $"(?:{string.Join("|", Prefixes)})";
         private static string InfixGroup => $"(?:{string.Join("|", Infixes1)}|{string.Join("|", Infixes2)})";
         private static string SuffixGroup => $"(?:{string.Join("|", Suffixes1)}|{string.Join("|", Suffixes2)})";
+        private static string SpecialNameGroup => $"(?:{string.Join("|", SpecialNames)})";
 
         // Sector name regex
         private static string Class1ShortRegex => $"{PrefixGroup}{InfixGroup}{SuffixGroup}";
@@ -76,6 +84,9 @@ namespace SystemPicker.Matcher
                 $@"\b{Class1ShortRegex} {SystemIdRegex}\b",
                 $@"\b{Class1LongRegex} {SystemIdRegex}\b",
                 $@"\b{Class2Regex} {SystemIdRegex}\b",
+                
+                $@"\b{SpecialNameGroup} (?:Sector|Region) {SystemIdRegex}",
+                $@"\b[A-Za-z]+(?: [A-Za-z0-9]+)? (?:Sector|Region) {SystemIdRegex}"
             };
         }
 
