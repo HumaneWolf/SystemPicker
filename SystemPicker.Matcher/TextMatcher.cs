@@ -52,7 +52,7 @@ namespace SystemPicker.Matcher
         
         public List<string> FindProcGenSystemCandidates(string text)
         {
-            var procGen = new ProcGenExpressionGenerator();
+            var procGen = new ProcGenFinder();
             var regex = procGen.GenerateProcGenRegex()
                 .Select(r => new Regex(r, RegexOptions.Compiled | RegexOptions.IgnoreCase));
 

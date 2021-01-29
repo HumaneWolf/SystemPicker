@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SystemPicker.Matcher
 {
-    public class ProcGenExpressionGenerator
+    public class ProcGenFinder
     {
         // Based on info from http://disc.thargoid.space/Sector_Naming
         
@@ -62,7 +64,11 @@ namespace SystemPicker.Matcher
         // System identifier regex
         private static readonly string SystemIdRegex = "[A-Za-z][A-Za-z]-[A-Za-z] [A-Ha-h][0-9]+(?:-[0-9]+)?";
 
-        // Make the set of regex to find entire system names
+        /// <summary>
+        /// Generate a set of regex expressions which match procedurally generated system names.
+        /// Suitable to extract a name from text, and similar.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GenerateProcGenRegex()
         {
             return new()
@@ -71,6 +77,13 @@ namespace SystemPicker.Matcher
                 $@"\b{Class1LongRegex} {SystemIdRegex}\b",
                 $@"\b{Class2Regex} {SystemIdRegex}\b",
             };
+        }
+
+        public bool IsProcGen(string name)
+        {
+            return GenerateProcGenRegex()
+                .Select(r => new Regex($@"^{r}$", RegexOptions.Compiled | RegexOptions.IgnoreCase))
+                .Any(x => x.IsMatch(name));
         }
     }
 }

@@ -7,7 +7,7 @@ namespace SystemPicker.RedditBot
     {
         static void Main(string[] args)
         {
-            var procGen = new ProcGenExpressionGenerator();
+            var procGen = new ProcGenFinder();
             var expressions = procGen.GenerateProcGenRegex();
 
             foreach (var e in expressions)
