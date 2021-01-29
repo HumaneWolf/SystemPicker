@@ -86,7 +86,8 @@ namespace SystemPicker.Matcher
                 $@"\b{Class2Regex} {SystemIdRegex}\b",
                 
                 $@"\b{SpecialNameGroup} (?:Sector|Region) {SystemIdRegex}",
-                $@"\b[A-Za-z]+(?: [A-Za-z0-9]+)? (?:Sector|Region) {SystemIdRegex}"
+                $@"\b[A-Za-z]+ (?:Sector|Region) {SystemIdRegex}", // This and the next one are two, so that we extract both options if both exist
+                $@"\b[A-Za-z]+ [A-Za-z0-9]+ (?:Sector|Region) {SystemIdRegex}",
             };
         }
 
