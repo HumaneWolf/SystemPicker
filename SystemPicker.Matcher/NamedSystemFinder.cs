@@ -24,10 +24,9 @@ namespace SystemPicker.Matcher
             await _redis.KeyDeleteAsync($"{_prefix}:{systemName.ToLower()}");
         }
 
-        public async Task<bool> IsNamed(string systemName)
+        public Task<bool> IsNamed(string systemName)
         {
-            var val = await _redis.StringGetAsync($"{_prefix}:{systemName.ToLower()}");
-            return !string.IsNullOrEmpty(val);
+            return _redis.KeyExistsAsync($"{_prefix}:{systemName.ToLower()}");
         }
     }
 }
