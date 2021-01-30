@@ -50,30 +50,18 @@ namespace SystemPicker.Matcher
             "rshch", "mly", "py", "bb", "nds", "wry", "zz", "nns", "ld", "lf", "gh", "lks", "sly", "lk", "ll", "rph",
             "ln", "bs", "rsts", "gs", "ls", "vvy", "lt", "rks", "qs", "rps", "gy", "wns", "lz", "nth", "phs"
         };
-        
-        // Custom sector names
-        private static List<string> SpecialNames = new()
-        {
-            "[A-Z][0-9]+","Corona Austr. Dark", @"Pipe \(stem\)", "LBN [0-9]+",
-            "Blanco 1", "NGC [0-9]+[A-Z]",
-        };
-        
+
         // Regex matching groups
         private static string PrefixGroup => $"(?:{string.Join("|", Prefixes)})";
         private static string InfixGroup => $"(?:{string.Join("|", Infixes1)}|{string.Join("|", Infixes2)})";
         private static string SuffixGroup => $"(?:{string.Join("|", Suffixes1)}|{string.Join("|", Suffixes2)})";
-        private static string SpecialNameGroup => $"(?:{string.Join("|", SpecialNames)})";
 
         // Sector name regex
         private static readonly string Class1ShortRegex = $"{PrefixGroup}{InfixGroup}{SuffixGroup}";
         private static readonly string Class1LongRegex = $"{PrefixGroup}{InfixGroup}{InfixGroup}{SuffixGroup}";
         private static readonly string Class2Regex = $"{PrefixGroup}{SuffixGroup} {PrefixGroup}{SuffixGroup}";
 
-        private static readonly string SpecialRegex = $"{SpecialNameGroup} (?:Sector|Region)";
-        private static readonly string Sector1Regex = $"[A-Za-z]+ (?:Sector|Region)";
-        private static readonly string Sector2Regex = $"[A-Za-z]+ [A-Za-z0-9]+ (?:Sector|Region)";
-
-        private static readonly string CombinedSectorRegex = $"(?:{Class1ShortRegex}|{Class1LongRegex}|{Class2Regex}|{SpecialRegex}|{Sector1Regex}|{Sector2Regex})";
+        private static readonly string CombinedSectorRegex = $"(?:{Class1ShortRegex}|{Class1LongRegex}|{Class2Regex})";
         
         // System identifier regex
         private static readonly string SystemIdRegex = "[A-Za-z][A-Za-z]-[A-Za-z] [A-Ha-h][0-9]+(?:-[0-9]+)?";

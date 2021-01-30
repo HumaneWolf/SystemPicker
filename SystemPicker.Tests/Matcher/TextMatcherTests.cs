@@ -136,7 +136,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Equal("Synoagoae IO-O d7-0", match.Name);
         }
         
-        [Fact]
+        [Fact(Skip = "Need to rethink how we handle sector/region names.")]
         public async Task Extract_from_comment_6()
         {
             var result = await ScanText("Something dark is happening over in Coalsack Dark Region AA-Q b5-5");
@@ -170,7 +170,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Contains(result, m => m.Id64 == 908620731338 && m.Name == "Praea Euq JL-J c23-3");
         }
         
-        [Fact]
+        [Fact(Skip = "Need to rethink how we handle sector/region names.")]
         public void ProcGen_Potential_Confusion_test_1()
         {
             var textMatcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
