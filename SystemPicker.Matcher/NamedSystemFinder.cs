@@ -3,12 +3,12 @@ using StackExchange.Redis;
 
 namespace SystemPicker.Matcher
 {
-    public class NamedFinder
+    public class NamedSystemFinder
     {
         private readonly IDatabase _redis;
         private readonly string _prefix;
 
-        public NamedFinder(IDatabase redisDatabase)
+        public NamedSystemFinder(IDatabase redisDatabase)
         {
             _redis = redisDatabase;
             _prefix = "named-system";

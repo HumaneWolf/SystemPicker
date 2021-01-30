@@ -126,6 +126,28 @@ namespace SystemPicker.Tests.Matcher
         }
         
         [Fact]
+        public async Task Extract_from_comment_5()
+        {
+            var result = await ScanText("Something is going on in Synoagoae IO-O d7-0");
+            Assert.Single(result);
+            
+            var match = result.First();
+            Assert.Equal(14033852867, match.Id64);
+            Assert.Equal("Synoagoae IO-O d7-0", match.Name);
+        }
+        
+        [Fact]
+        public async Task Extract_from_comment_6()
+        {
+            var result = await ScanText("Something dark is happening over in Coalsack Dark Region AA-Q b5-5");
+            Assert.Single(result);
+            
+            var match = result.First();
+            Assert.Equal(11672781465113, match.Id64);
+            Assert.Equal("Coalsack Dark Region AA-Q b5-5", match.Name);
+        }
+        
+        [Fact]
         public async Task Extract_from_post_1()
         {
             // https://www.reddit.com/r/EliteDangerous/comments/l67wpu/flying_to_sag_a_without_a_fuel_scoop_day_2/
@@ -146,6 +168,30 @@ namespace SystemPicker.Tests.Matcher
 
             Assert.Contains(result, m => m.Id64 == 358864950034 && m.Name == "Quince");
             Assert.Contains(result, m => m.Id64 == 908620731338 && m.Name == "Praea Euq JL-J c23-3");
+        }
+        
+        [Fact]
+        public void ProcGen_Potential_Confusion_test_1()
+        {
+            var textMatcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
+            var result = textMatcher.FindProcGenSystemCandidates("Coalsack Dark Region AA-Q b5-5");
+            Assert.Single(result);
+            
+            var match = result.First();
+            Assert.Equal("Coalsack Dark Region AA-Q b5-5", match);
+        }
+        
+        [Fact(Skip = "Not ready yet")]
+        public void ProcGen_Potential_Confusion_test_2()
+        {
+            var textMatcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
+            var result = textMatcher.FindProcGenSystemCandidates("North America Sector AA-Q b5-0 and America Sector AA-Q b5-0");
+            Assert.Equal(2, result.Count);
+            
+            var match = result.First();
+            Assert.Equal("North America Sector AA-Q b5-0", match);
+            match = result.Last();
+            Assert.Equal("America Sector AA-Q b5-0", match);
         }
     }
 }

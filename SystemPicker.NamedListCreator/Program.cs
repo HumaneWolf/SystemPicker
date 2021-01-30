@@ -95,7 +95,7 @@ namespace SystemPicker.NamedListCreator
         {
             // Console.WriteLine($"Starting to add {system.Name}.");
             var redisDb = _redisMultiplexer.GetDatabase();
-            var finder = new NamedFinder(redisDb);
+            var finder = new NamedSystemFinder(redisDb);
             await finder.AddSystem(system.Name);
             // Console.WriteLine($"Added {system.Name}.");
         }
