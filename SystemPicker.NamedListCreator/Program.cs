@@ -2,85 +2,110 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using SystemPicker.Matcher;
 using SystemPicker.Matcher.Models;
 using CsvHelper;
+using StackExchange.Redis;
 
 namespace SystemPicker.NamedListCreator
 {
     static class Program
     {
-        private static StreamWriter _output;
-        private const string Lock = "namedSystemsLock";
-
-        private static CatalogFinder Catalog = new();
-        private static ProcGenFinder ProcGen = new();
+        private static ConnectionMultiplexer _redisMultiplexer;
+        private static CatalogFinder _catalog = new();
+        private static ProcGenFinder _procGen = new();
         
-
+        // Locked
+        private static string _lock = "locked";
+        private static CsvReader _csvReader;
+        // End locked
+        
         static async Task Main(string[] args)
         {
-            if (args.Length != 2)
+            if (args.Length != 1)
             {
-                Console.WriteLine("EDDB systems.csv file and output file path is required.");
+                Console.WriteLine("EDDB systems.csv file is required.");
                 return;
             }
 
-            using var streamReader = File.OpenText(args[0]);
-            using var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture);
-
-            lock (Lock) // Lock is strictly not necessary here, mainly there to satisfy basic code analysis.
+            lock (_lock)// Strictly not needed, but helps satisfy basic analysis. 
             {
-                _output = File.CreateText(args[1]);
+                var streamReader = File.OpenText(args[0]);
+                _csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture);
+
+                _redisMultiplexer = ConnectionMultiplexer.Connect("localhost");
+                
+                _csvReader.Read();
+                _csvReader.ReadHeader();                
             }
 
+            // Run 4 workers.
+            Console.WriteLine($"Starting workers at {DateTime.UtcNow.ToShortTimeString()}.");
             var tasks = new List<Task>();
-            csvReader.Read();
-            csvReader.ReadHeader();
-            while (csvReader.Read())
+            for (var i = 0; i < 4; i++)
             {
-                var data = csvReader.GetRecord<CsvSystem>();
-                tasks.Add(Task.Run(() => CheckIfValid(data)));
-
-                if (tasks.Count % 1_000_000 == 0)
-                {
-                    Console.WriteLine($"Processed {tasks.Count} systems.");
-                    lock (Lock) // Lock is strictly not necessary here, mainly there to satisfy basic code analysis.
-                    {
-                        _output.Flush();
-                        _output.BaseStream.Flush();
-                    }
-                }
+                var localWorkerNumber = i; // Prevents us from modifying the number in the outer scope before Worker executes, causing all to be given the same.
+                tasks.Add(Task.Run(() => Worker(localWorkerNumber)));
             }
-
+            
             await Task.WhenAll(tasks);
             
-            lock (Lock)
-            {
-                _output.Close();
-            }
-
-            Console.WriteLine("Done.");
+            Console.WriteLine($"Done at {DateTime.UtcNow.ToShortTimeString()}.");
         }
 
-        private static void AddNamedSystem(SystemMatch system)
+        private static async Task Worker(int workerNumber)
         {
-            // Console.WriteLine($"Named system: {system.Name}.");
-            lock (Lock)
+            var batchNumber = 0L;
+            while (true)
             {
-                _output.WriteLine(system.Name);
+                var batch = new List<CsvSystem>();
+
+                // Get our batch.
+                lock (_lock)
+                {
+                    while (_csvReader.Read() && batch.Count < 100_000)
+                    {
+                        var data = _csvReader.GetRecord<CsvSystem>();
+                        batch.Add(data);
+                    }
+                    Console.WriteLine($"Got batch {workerNumber}-{batchNumber} of size {batch.Count}.");
+                }
+
+                // If no batch available, we're done.
+                if (batch.Count == 0)
+                {
+                    return;
+                }
+
+                // Process it.
+                foreach (var system in batch)
+                {
+                    await CheckIfValid(system);
+                }
+                
+                // done
+                Console.WriteLine($"Processed batch {workerNumber}-{batchNumber} of size {batch.Count}.");
+                batch.Clear();
+                batchNumber++;
             }
         }
 
-        private static Task CheckIfValid(CsvSystem system)
+        private static async Task AddNamedSystems(SystemMatch system)
         {
-            if (system.EDSystemAddress != null && !Catalog.IsCatalogSystem(system.Name) && !ProcGen.IsProcGen(system.Name))
-            {
-                AddNamedSystem(new SystemMatch(system.Name, system.EDSystemAddress ?? 0));
-            }
+            // Console.WriteLine($"Starting to add {system.Name}.");
+            var redisDb = _redisMultiplexer.GetDatabase();
+            var finder = new NamedFinder(redisDb);
+            await finder.AddSystem(system.Name);
+            // Console.WriteLine($"Added {system.Name}.");
+        }
 
-            return Task.CompletedTask;
+        private static async Task CheckIfValid(CsvSystem system)
+        {
+            if (system.EDSystemAddress != null && !_catalog.IsCatalogSystem(system.Name) && !_procGen.IsProcGen(system.Name))
+            {
+                await AddNamedSystems(new SystemMatch(system.Name, system.EDSystemAddress ?? 0));                
+            }
         }
     }
 }

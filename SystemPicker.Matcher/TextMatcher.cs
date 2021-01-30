@@ -47,20 +47,12 @@ namespace SystemPicker.Matcher
 
         public List<string> FindCatalogSystemCandidates(string text)
         {
-            var catalog = new CatalogFinder();
-            var regex = catalog.GenerateCatalogRegex()
-                .Select(r => new Regex(r, RegexOptions.Compiled | RegexOptions.IgnoreCase));
-            
-            return regex.SelectMany(rx => rx.Matches(text).Select(m => m.Value)).ToList();
+            return CatalogFinder.CatalogRegex.Matches(text).Select(x => x.Value).ToList();
         }
         
         public List<string> FindProcGenSystemCandidates(string text)
         {
-            var procGen = new ProcGenFinder();
-            var regex = procGen.GenerateProcGenRegex()
-                .Select(r => new Regex(r, RegexOptions.Compiled | RegexOptions.IgnoreCase));
-
-            return regex.SelectMany(rx => rx.Matches(text).Select(m => m.Value)).ToList();
+            return ProcGenFinder.ProcGenRegex.Matches(text).Select(x => x.Value).ToList();
         }
     }
 }

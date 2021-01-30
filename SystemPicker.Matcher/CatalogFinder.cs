@@ -215,16 +215,16 @@ namespace SystemPicker.Matcher
             },
         };
         
-        public List<string> GenerateCatalogRegex()
-        {
-            return Catalogs.Select(x => x.Regex).ToList();
-        }
+        // Combined regex
+        private static readonly string CombinedRegex = $"(?:{string.Join("|", Catalogs.Select(c => c.Regex))})";
+        
+        // Complete regex
+        public static Regex CatalogRegex = new Regex($@"\b{CombinedRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        public static Regex FullStringRegex = new Regex($@"^{CombinedRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public bool IsCatalogSystem(string name)
         {
-            return GenerateCatalogRegex()
-                .Select(r => new Regex($@"^{r}$", RegexOptions.Compiled | RegexOptions.IgnoreCase))
-                .Any(x => x.IsMatch(name));
+            return FullStringRegex.IsMatch(name);
         }
     }
 }
