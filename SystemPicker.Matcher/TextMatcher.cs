@@ -41,14 +41,12 @@ namespace SystemPicker.Matcher
 
         public List<string> FindNamedSystemCandidates(string text)
         {
-            // todo
-            return new ();
+            return NamedSystemFinder.FindPossibleSystems(text);
         }
         
         public List<string> FindNamedSectorCandidates(string text)
         {
-            // todo
-            return new ();
+            return NamedSectorFinder.NamedSectorSystemRegex.Matches(text).Select(x => x.Value).ToList();
         }
 
         public List<string> FindCatalogSystemCandidates(string text)
