@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.SystemApis;
@@ -21,6 +20,7 @@ namespace SystemPicker.Matcher
             var candidates = FindProcGenSystemCandidates(text);
             candidates.AddRange(FindCatalogSystemCandidates(text));
             candidates.AddRange(FindNamedSystemCandidates(text));
+            candidates.AddRange(FindNamedSectorCandidates(text));
 
             // duplicate prevention.
             var matches = new Dictionary<string, SystemMatch>();
@@ -40,6 +40,12 @@ namespace SystemPicker.Matcher
         }
 
         public List<string> FindNamedSystemCandidates(string text)
+        {
+            // todo
+            return new ();
+        }
+        
+        public List<string> FindNamedSectorCandidates(string text)
         {
             // todo
             return new ();

@@ -64,7 +64,7 @@ namespace SystemPicker.Matcher
         private static readonly string CombinedSectorRegex = $"(?:{Class1ShortRegex}|{Class1LongRegex}|{Class2Regex})";
         
         // System identifier regex
-        private static readonly string SystemIdRegex = "[A-Za-z][A-Za-z]-[A-Za-z] [A-Ha-h][0-9]+(?:-[0-9]+)?";
+        public static readonly string SystemIdRegex = "[A-Za-z][A-Za-z]-[A-Za-z] [A-Ha-h][0-9]+(?:-[0-9]+)?";
 
 
         // Complete regex

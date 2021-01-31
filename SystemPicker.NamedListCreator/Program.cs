@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using SystemPicker.Matcher;
 using SystemPicker.Matcher.Models;
+using SystemPicker.Matcher.Storage;
 using CsvHelper;
 using StackExchange.Redis;
 
@@ -95,7 +96,7 @@ namespace SystemPicker.NamedListCreator
         {
             // Console.WriteLine($"Starting to add {system.Name}.");
             var redisDb = _redisMultiplexer.GetDatabase();
-            var finder = new NamedSystemFinder(redisDb);
+            var finder = new NamedSystemStorage(redisDb);
             await finder.AddSystem(system.Name);
             // Console.WriteLine($"Added {system.Name}.");
         }
