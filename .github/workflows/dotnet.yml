@@ -25,7 +25,8 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish
       run: dotnet publish --configuration release --output build-output/
-    - uses: actions/upload-artifact@v2
+    - name: Upload artifacts.
+      uses: actions/upload-artifact@v2
       with:
         name: SystemPicker
         path: build-output/
