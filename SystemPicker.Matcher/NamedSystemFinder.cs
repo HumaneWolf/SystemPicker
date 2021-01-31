@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace SystemPicker.Matcher
 {
-    public class NamedSystemFinder
+    public static class NamedSystemFinder
     {
         private static List<string> _systemNames = new(); // Never allow it to be null.
 

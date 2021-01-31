@@ -5,7 +5,7 @@ using SystemPicker.Matcher.Models;
 
 namespace SystemPicker.Matcher
 {
-    public class CatalogFinder
+    public static class CatalogFinder
     {
         private static readonly List<StarCatalog> Catalogs = new()
         {

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SystemPicker.Matcher
 {
-    public class ProcGenFinder
+    public static class ProcGenFinder
     {
         // Based on info from http://disc.thargoid.space/Sector_Naming
         

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace SystemPicker.Matcher
 {
-    public class NamedSectorFinder
+    public static class NamedSectorFinder
     {
         public static Regex NamedSectorSystemRegex = new($@"\b.+ sector {ProcGenFinder.SystemIdRegex}\b",
             RegexOptions.Compiled | RegexOptions.IgnoreCase);

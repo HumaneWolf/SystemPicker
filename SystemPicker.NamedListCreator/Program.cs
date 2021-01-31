@@ -14,9 +14,7 @@ namespace SystemPicker.NamedListCreator
     static class Program
     {
         private static ConnectionMultiplexer _redisMultiplexer;
-        private static CatalogFinder _catalog = new();
-        private static ProcGenFinder _procGen = new();
-        
+
         // Locked
         private static string _lock = "locked";
         private static CsvReader _csvReader;
