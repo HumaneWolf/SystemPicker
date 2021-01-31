@@ -80,7 +80,7 @@ namespace SystemPicker.NamedListCreator
                 // Process it.
                 foreach (var system in batch)
                 {
-                    await CheckIfValid(system);
+                    await CheckAndSave(system);
                 }
                 
                 // done
@@ -96,12 +96,27 @@ namespace SystemPicker.NamedListCreator
             var storage = new NamedSystemStorage(redisDb);
             await storage.AddSystem(system.Name);
         }
+        
+        private static async Task AddNamedSector(string sectorName)
+        {
+            var redisDb = _redisMultiplexer.GetDatabase();
+            var storage = new NamedSectorStorage(redisDb);
+            await storage.AddSector(sectorName);
+        }
 
-        private static async Task CheckIfValid(CsvSystem system)
+        private static async Task CheckAndSave(CsvSystem system)
         {
             if (system.EDSystemAddress != null && !CatalogFinder.IsCatalogSystem(system.Name) && !ProcGenFinder.IsProcGen(system.Name))
             {
-                await AddNamedSystems(new SystemMatch(system.Name, system.EDSystemAddress ?? 0));                
+                var possiblySector = NamedSectorFinder.ExtractSectorName(system.Name);
+                if (possiblySector == null)
+                {
+                    await AddNamedSystems(new SystemMatch(system.Name, system.EDSystemAddress ?? 0));                    
+                }
+                else
+                {
+                    await AddNamedSector(possiblySector);
+                }
             }
         }
     }
