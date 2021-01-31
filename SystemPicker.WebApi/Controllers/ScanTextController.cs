@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystemPicker.Matcher;
+using SystemPicker.Matcher.Models;
 using SystemPicker.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace SystemPicker.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class ScanText : ControllerBase
     {
         private readonly ILogger<ScanText> _logger;
@@ -20,7 +22,14 @@ namespace SystemPicker.WebApi.Controllers
             _matcher = matcher;
         }
 
+        /// <summary>
+        /// Scan a text for system names, and 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(typeof(List<SystemMatch>), 200)]
+        [ProducesResponseType(typeof(List<SystemMatch>), 400)]
         public async Task<IActionResult> Post([FromBody]ScanInput input)
         {
             var scanId = Guid.NewGuid();
