@@ -6,11 +6,11 @@ namespace SystemPicker.Matcher.Finders
 {
     public static class NamedSystemFinder
     {
-        private static List<string> _systems = new();
+        public static List<string> Systems = new();
 
         public static void SetSystems(IEnumerable<string> systems)
         {
-            _systems = systems.Select(s => s.ToLower()).ToList();
+            Systems = systems.Select(s => s.ToLower()).ToList();
         }
 
         public static List<string> FindCandidates(string text)
@@ -18,7 +18,7 @@ namespace SystemPicker.Matcher.Finders
             var lowerText = text.ToLower();
 
             // See if any system might be in the text.
-            var candidates = _systems.Where(s => lowerText.Contains(s)).ToList();
+            var candidates = Systems.Where(s => lowerText.Contains(s)).ToList();
 
             if (!candidates.Any())
             {

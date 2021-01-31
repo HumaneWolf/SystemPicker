@@ -21,12 +21,7 @@ namespace SystemPicker.WebApi.Controllers
             _logger = logger;
             _matcher = matcher;
         }
-
-        /// <summary>
-        /// Scan a text for system names, and 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        
         [HttpPost]
         [ProducesResponseType(typeof(List<SystemMatch>), 200)]
         [ProducesResponseType(typeof(List<SystemMatch>), 400)]

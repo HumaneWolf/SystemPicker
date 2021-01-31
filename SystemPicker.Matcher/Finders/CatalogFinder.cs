@@ -7,7 +7,7 @@ namespace SystemPicker.Matcher.Finders
 {
     public static class CatalogFinder
     {
-        private static readonly List<StarCatalog> Catalogs = new()
+        public static readonly List<StarCatalog> Catalogs = new()
         {
             new StarCatalog
             {

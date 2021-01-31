@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using SystemPicker.Matcher;
 using SystemPicker.Matcher.Storage;
 using Microsoft.AspNetCore.Builder;
@@ -33,7 +35,12 @@ namespace SystemPicker.WebApi
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "SystemPicker.WebApi", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "SystemPicker.WebApi",
+                    Description = "Identify system names in arbitrary text, for further processing.",
+                    Version = "v1",
+                });
             });
         }
 

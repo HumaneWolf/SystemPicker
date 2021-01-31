@@ -6,6 +6,8 @@ namespace SystemPicker.Matcher.Finders
 {
     public static class NamedSectorFinder
     {
+        public static List<string> SectorList = new();
+        
         public static Regex NamedSectorSystemRegex = new($@"\b.+ (?:sector|region) {ProcGenFinder.SystemIdRegex}\b",
             RegexOptions.Compiled | RegexOptions.IgnoreCase);
         public static Regex FullWordRegex = new($@"^.+ (?:sector|region) {ProcGenFinder.SystemIdRegex}$",
@@ -15,8 +17,10 @@ namespace SystemPicker.Matcher.Finders
         
         public static void SetSectors(IEnumerable<string> sectors)
         {
+            SectorList = sectors.ToList();
+            
             // todo: We need a better solution.
-            sectors = sectors.Select(s => s
+            sectors = SectorList.Select(s => s
                 .Replace("(", @"\(")
                 .Replace(")", @"\)")
                 .Replace("[", @"\[")
