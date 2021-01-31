@@ -219,8 +219,8 @@ namespace SystemPicker.Matcher
         private static readonly string CombinedRegex = $"(?:{string.Join("|", Catalogs.Select(c => c.Regex))})";
         
         // Complete regex
-        public static Regex CatalogRegex = new Regex($@"\b{CombinedRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        public static Regex FullStringRegex = new Regex($@"^{CombinedRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        public static Regex CatalogRegex = new($@"\b{CombinedRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        public static Regex FullStringRegex = new($@"^{CombinedRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public static bool IsCatalogSystem(string name)
         {

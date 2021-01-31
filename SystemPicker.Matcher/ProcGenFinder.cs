@@ -68,8 +68,8 @@ namespace SystemPicker.Matcher
 
 
         // Complete regex
-        public static Regex ProcGenRegex = new Regex($@"\b{CombinedSectorRegex} {SystemIdRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        public static Regex FullStringRegex = new Regex($@"^{CombinedSectorRegex} {SystemIdRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        public static Regex ProcGenRegex = new($@"\b{CombinedSectorRegex} {SystemIdRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        public static Regex FullStringRegex = new($@"^{CombinedSectorRegex} {SystemIdRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public static bool IsProcGen(string name)
         {
