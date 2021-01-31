@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using SystemPicker.Matcher.Models;
 
-namespace SystemPicker.Matcher
+namespace SystemPicker.Matcher.Finders
 {
     public static class CatalogFinder
     {

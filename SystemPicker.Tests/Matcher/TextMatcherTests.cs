@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SystemPicker.Matcher;
+using SystemPicker.Matcher.Finders;
 using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.SystemApis;
 using Xunit;

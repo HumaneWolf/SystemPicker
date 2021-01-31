@@ -1,4 +1,5 @@
 ﻿using SystemPicker.Matcher;
+using SystemPicker.Matcher.Finders;
 using Xunit;
 
 namespace SystemPicker.Tests.Matcher

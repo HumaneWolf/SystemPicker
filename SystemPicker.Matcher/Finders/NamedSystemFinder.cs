@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace SystemPicker.Matcher
+namespace SystemPicker.Matcher.Finders
 {
     public static class NamedSystemFinder
     {
