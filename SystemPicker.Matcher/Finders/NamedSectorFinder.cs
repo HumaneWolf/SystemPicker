@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SystemPicker.Matcher.Finders
@@ -14,6 +15,18 @@ namespace SystemPicker.Matcher.Finders
         
         public static void SetSectors(IEnumerable<string> sectors)
         {
+            // todo: We need a better solution.
+            sectors = sectors.Select(s => s
+                .Replace("(", @"\(")
+                .Replace(")", @"\)")
+                .Replace("[", @"\[")
+                .Replace("]", @"\]")
+                .Replace("{", @"\{")
+                .Replace("}", @"\}")
+                .Replace(".", @"\.")
+                .Replace("+", @"\+")
+                .Replace("*", @"\*")
+                .Replace("|", @"\|"));
             var sectorsGroup = $@"(?:{string.Join('|', sectors)})";
 
             NamedSectorSystemRegex = new($@"\b{sectorsGroup} (?:sector|region) {ProcGenFinder.SystemIdRegex}\b",
