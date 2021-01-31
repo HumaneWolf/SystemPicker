@@ -11,8 +11,23 @@ namespace SystemPicker.Tests.Matcher
 {
     public class TextMatcherTests
     {
+        private void AddTestData()
+        {
+            NamedSystemFinder.SetSystems(new List<string>
+            {
+                "sol", "colonia", "shinrarta dezhra", "achenar", "quince",
+            });
+            
+            NamedSectorFinder.SetSectors(new List<string>
+            {
+                "coalsack dark", "north america", "madeup",
+            });
+        }
+        
         private Task<List<SystemMatch>> ScanText(string text)
         {
+            AddTestData();
+            
             var matcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
             return matcher.FindSystemMatches(text);
         }
@@ -72,7 +87,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Equal("HIP 100002", match.Name);
         }
         
-        [Fact(Skip = "Not yet implemented.")]
+        [Fact]
         public async Task String_is_system_name_named()
         {
             var result = await ScanText("sol");
@@ -136,7 +151,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Equal("Synoagoae IO-O d7-0", match.Name);
         }
         
-        [Fact(Skip = "Need to rethink how we handle sector/region names.")]
+        [Fact]
         public async Task Extract_from_comment_6()
         {
             var result = await ScanText("Something dark is happening over in Coalsack Dark Region AA-Q b5-5");
@@ -159,7 +174,7 @@ namespace SystemPicker.Tests.Matcher
             Assert.Contains(result, m => m.Id64 == 908754916450 && m.Name == "Blu Thua NE-G c11-3");
         }
         
-        [Fact(Skip = "Not yet implemented.")]
+        [Fact]
         public async Task Extract_from_post_2()
         {
             // https://www.reddit.com/r/EliteDangerous/comments/l5tqcj/flying_to_sag_a_without_a_fuel_scoop_day_1/
@@ -170,28 +185,28 @@ namespace SystemPicker.Tests.Matcher
             Assert.Contains(result, m => m.Id64 == 908620731338 && m.Name == "Praea Euq JL-J c23-3");
         }
         
-        [Fact(Skip = "Need to rethink how we handle sector/region names.")]
-        public void ProcGen_Potential_Confusion_test_1()
+        [Fact]
+        public async Task ProcGen_Potential_Confusion_test_1()
         {
-            var textMatcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
-            var result = textMatcher.FindProcGenSystemCandidates("Coalsack Dark Region AA-Q b5-5");
+            var result = await ScanText("Coalsack Dark Region AA-Q b5-5");
             Assert.Single(result);
             
             var match = result.First();
-            Assert.Equal("Coalsack Dark Region AA-Q b5-5", match);
+            Assert.Equal("Coalsack Dark Region AA-Q b5-5", match.Name);
+            Assert.Equal(11672781465113, match.Id64);
         }
         
-        [Fact(Skip = "Not ready yet")]
+        [Fact]
         public void ProcGen_Potential_Confusion_test_2()
         {
             var textMatcher = new TextMatcher(new RandomSystemApi(new HttpClient()));
-            var result = textMatcher.FindProcGenSystemCandidates("North America Sector AA-Q b5-0 and America Sector AA-Q b5-0");
+            var result = textMatcher.FindNamedSectorCandidates("North America Sector AA-Q b5-0 and Madeup Sector AA-Q b5-0");
             Assert.Equal(2, result.Count);
             
             var match = result.First();
             Assert.Equal("North America Sector AA-Q b5-0", match);
             match = result.Last();
-            Assert.Equal("America Sector AA-Q b5-0", match);
+            Assert.Equal("Madeup Sector AA-Q b5-0", match);
         }
     }
 }

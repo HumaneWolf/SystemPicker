@@ -41,7 +41,7 @@ namespace SystemPicker.Matcher
 
         public List<string> FindNamedSystemCandidates(string text)
         {
-            return NamedSystemFinder.FindPossibleSystems(text);
+            return NamedSystemFinder.NamedSystemRegex.Matches(text).Select(x => x.Value).ToList();
         }
         
         public List<string> FindNamedSectorCandidates(string text)
