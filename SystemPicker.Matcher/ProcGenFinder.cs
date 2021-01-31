@@ -71,7 +71,7 @@ namespace SystemPicker.Matcher
         public static Regex ProcGenRegex = new Regex($@"\b{CombinedSectorRegex} {SystemIdRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         public static Regex FullStringRegex = new Regex($@"^{CombinedSectorRegex} {SystemIdRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public bool IsProcGen(string name)
+        public static bool IsProcGen(string name)
         {
             return FullStringRegex.IsMatch(name);
         }

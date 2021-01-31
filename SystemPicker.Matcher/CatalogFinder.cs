@@ -222,7 +222,7 @@ namespace SystemPicker.Matcher
         public static Regex CatalogRegex = new Regex($@"\b{CombinedRegex}\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         public static Regex FullStringRegex = new Regex($@"^{CombinedRegex}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public bool IsCatalogSystem(string name)
+        public static bool IsCatalogSystem(string name)
         {
             return FullStringRegex.IsMatch(name);
         }

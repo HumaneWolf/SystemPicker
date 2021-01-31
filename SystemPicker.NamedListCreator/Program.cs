@@ -94,16 +94,14 @@ namespace SystemPicker.NamedListCreator
 
         private static async Task AddNamedSystems(SystemMatch system)
         {
-            // Console.WriteLine($"Starting to add {system.Name}.");
             var redisDb = _redisMultiplexer.GetDatabase();
-            var finder = new NamedSystemStorage(redisDb);
-            await finder.AddSystem(system.Name);
-            // Console.WriteLine($"Added {system.Name}.");
+            var storage = new NamedSystemStorage(redisDb);
+            await storage.AddSystem(system.Name);
         }
 
         private static async Task CheckIfValid(CsvSystem system)
         {
-            if (system.EDSystemAddress != null && !_catalog.IsCatalogSystem(system.Name) && !_procGen.IsProcGen(system.Name))
+            if (system.EDSystemAddress != null && !CatalogFinder.IsCatalogSystem(system.Name) && !ProcGenFinder.IsProcGen(system.Name))
             {
                 await AddNamedSystems(new SystemMatch(system.Name, system.EDSystemAddress ?? 0));                
             }

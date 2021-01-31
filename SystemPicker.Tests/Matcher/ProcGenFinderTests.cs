@@ -7,8 +7,7 @@ namespace SystemPicker.Tests.Matcher
     {
         private bool IsProcGen(string text)
         {
-            var matcher = new ProcGenFinder();
-            return matcher.IsProcGen(text);
+            return ProcGenFinder.IsProcGen(text);
         }
         
         [Fact]

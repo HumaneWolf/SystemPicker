@@ -7,8 +7,7 @@ namespace SystemPicker.Tests.Matcher
     {
         private bool IsCatalogSystem(string text)
         {
-            var matcher = new CatalogFinder();
-            return matcher.IsCatalogSystem(text);
+            return CatalogFinder.IsCatalogSystem(text);
         }
         
         [Fact]
