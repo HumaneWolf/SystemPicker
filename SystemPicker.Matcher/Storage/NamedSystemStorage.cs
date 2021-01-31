@@ -8,22 +8,22 @@ namespace SystemPicker.Matcher.Storage
     public class NamedSystemStorage
     {
         private readonly IDatabase _redis;
-        private readonly string _namedSystemsSet;
+        private readonly string _namedSystemsHash;
 
         public NamedSystemStorage(IDatabase redisDatabase)
         {
             _redis = redisDatabase;
-            _namedSystemsSet = "named-systems-1";
+            _namedSystemsHash = "named-systems-1";
         }
 
         public async Task AddSystem(string systemName)
         {
-            await _redis.SetAddAsync(_namedSystemsSet, systemName.ToLower());
+            await _redis.HashSetAsync(_namedSystemsHash, systemName.ToLower(), "1");
         }
 
         public async Task<IEnumerable<string>> GetAllSystems()
         {
-            return (await _redis.SetMembersAsync(_namedSystemsSet)).Select(m => m.ToString());
+            return (await _redis.HashKeysAsync(_namedSystemsHash)).Select(m => m.ToString());
         }
     }
 }

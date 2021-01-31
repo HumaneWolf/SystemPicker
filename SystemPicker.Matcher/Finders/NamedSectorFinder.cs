@@ -26,9 +26,9 @@ namespace SystemPicker.Matcher.Finders
         public static string ExtractSectorName(string systemName)
         {
             var match = ExtractSectorRegex.Match(systemName);
-            if (match.Success && match.Groups.Count >= 1)
+            if (match.Success && match.Groups.Count >= 2)
             {
-                return match.Groups[0].Value;
+                return match.Groups[1].Value;
             }
             return null;
         }
