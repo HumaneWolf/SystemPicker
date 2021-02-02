@@ -10,7 +10,7 @@ using SystemPicker.Matcher.Storage;
 using CsvHelper;
 using StackExchange.Redis;
 
-namespace SystemPicker.NamedListCreator
+namespace SystemPicker.SystemImporter
 {
     static class Program
     {

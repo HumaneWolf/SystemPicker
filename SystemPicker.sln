@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemPicker.Matcher", "Sys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemPicker.Tests", "SystemPicker.Tests\SystemPicker.Tests.csproj", "{CB0F2903-2B8D-479F-B6B4-3D0B8C7222A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemPicker.NamedListCreator", "SystemPicker.NamedListCreator\SystemPicker.NamedListCreator.csproj", "{621F2B39-C986-4A6E-B447-57CC5162B7DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemPicker.SystemImporter", "SystemPicker.SystemImporter\SystemPicker.SystemImporter.csproj", "{621F2B39-C986-4A6E-B447-57CC5162B7DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemPicker.WebApi", "SystemPicker.WebApi\SystemPicker.WebApi.csproj", "{03C6A36E-87CF-449F-AAA6-303E9CC5BB6B}"
 EndProject

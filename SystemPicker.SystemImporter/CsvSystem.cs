@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace SystemPicker.NamedListCreator
+namespace SystemPicker.SystemImporter
 {
     public class CsvSystem
     {
