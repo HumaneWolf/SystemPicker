@@ -119,7 +119,7 @@ namespace SystemPicker.Matcher.Finders
             },
             new StarCatalog
             {
-                Name = "LAWD (?)",
+                Name = "Luyten Atlas of White Dwarfs", // Thanks to T'kael on Discord.
                 Pattern = "LAWD 1234",
                 Regex = @"\bLAWD [0-9]+\b"
             },
@@ -143,7 +143,7 @@ namespace SystemPicker.Matcher.Finders
             },
             new StarCatalog
             {
-                Name = "Unknown (?)",
+                Name = "General Catalogue of Stellar Radial Velocities", // Thanks to T'kael on Discord.
                 Pattern = "GCRV 1234",
                 Regex = @"\bGCRV [0-9]+\b"
             },
