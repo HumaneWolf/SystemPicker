@@ -1,8 +1,4 @@
-using System;
-using System.IO;
-using System.Reflection;
 using SystemPicker.Matcher;
-using SystemPicker.Matcher.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -62,15 +58,8 @@ namespace SystemPicker.WebApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            
-            BootstrapData(app.ApplicationServices);
-        }
 
-        private void BootstrapData(IServiceProvider s)
-        {
-            var sectorStorage = s.GetRequiredService<NamedSectorStorage>();
-            var systemStorage = s.GetRequiredService<NamedSystemStorage>();
-            MatcherBootstrapper.BootstrapMatcherData(sectorStorage, systemStorage);
+            app.ApplicationServices.LoadMatcherData();
         }
     }
 }
