@@ -46,5 +46,10 @@ namespace SystemPicker.Matcher.Finders
             var nameGroup = $@"(?:{string.Join('|', systems)})";
             return new($@"\b{nameGroup}\b", RegexOptions.IgnoreCase);
         }
+
+        public static bool IsNamedSystem(string name)
+        {
+            return Systems.Any(x => x == name.ToLower());
+        }
     }
 }
