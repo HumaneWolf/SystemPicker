@@ -11,7 +11,7 @@ namespace SystemPicker.Matcher
     {
         public static IServiceCollection AddSystemMatcher(this IServiceCollection services)
         {
-            services.AddTransient<ISystemApi, RandomSystemApi>();
+            services.AddTransient<ISystemApi, CachedSystemApi>();
             services.AddTransient<TextMatcher>();
 
             services.AddTransient<NamedSystemStorage>();
