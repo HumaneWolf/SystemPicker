@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
-using SystemPicker.Matcher;
 using SystemPicker.Matcher.Finders;
 using SystemPicker.Matcher.Models;
 using SystemPicker.Matcher.Storage;
@@ -37,7 +36,7 @@ namespace SystemPicker.SystemImporter
                 _redisMultiplexer = ConnectionMultiplexer.Connect("localhost");
                 
                 _csvReader.Read();
-                _csvReader.ReadHeader();                
+                _csvReader.ReadHeader();
             }
 
             // Run 4 workers.
