@@ -1,6 +1,8 @@
+using System.Net;
 using SystemPicker.Matcher;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +29,7 @@ namespace SystemPicker.WebApi
             services.AddTransient<IDatabase>(provider => provider.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
             services.AddHttpClient();
-            
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,6 +52,12 @@ namespace SystemPicker.WebApi
             
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SystemPicker.WebApi v1"));
+            
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+                KnownProxies = {IPAddress.Loopback},
+            });
 
             app.UseHttpsRedirection();
 
