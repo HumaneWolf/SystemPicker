@@ -10,7 +10,7 @@ namespace SystemPicker.WebApi.Controllers
     public class ClassifySystemController : ControllerBase
     {
         [HttpGet]
-        [ProducesResponseType(typeof(List<string>), 200)]
+        [ProducesResponseType(typeof(ClassifyOutput), 200)]
         public IActionResult Get(string name)
         {
             if (ProcGenFinder.IsProcGen(name))

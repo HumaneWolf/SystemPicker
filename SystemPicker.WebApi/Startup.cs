@@ -56,7 +56,7 @@ namespace SystemPicker.WebApi
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-                KnownProxies = {IPAddress.Loopback},
+                KnownProxies = {IPAddress.Loopback, IPAddress.IPv6Loopback},
             });
 
             app.UseHttpsRedirection();
@@ -65,7 +65,10 @@ namespace SystemPicker.WebApi
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.ApplicationServices.LoadMatcherData();
         }
