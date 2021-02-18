@@ -21,7 +21,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SystemPicker.Matcher\SystemPicker.Matcher.csproj" />
-      <ProjectReference Include="..\SystemPicker.RedditBot\SystemPicker.RedditBot.csproj" />
     </ItemGroup>
 
     <ItemGroup>
