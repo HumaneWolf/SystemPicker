@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using SystemPicker.Matcher.Finders;
+﻿using SystemPicker.Matcher.Finders;
 using SystemPicker.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SystemPicker.WebApi.Controllers
 {
@@ -11,6 +11,10 @@ namespace SystemPicker.WebApi.Controllers
     {
         [HttpGet]
         [ProducesResponseType(typeof(ClassifyOutput), 200)]
+        [SwaggerOperation(
+            Summary = "Classify the system name category.",
+            Description = "Find which set of naming rules we recognize the system as. Result: ProcGen/Catalog/ProcGenNamedSector/Named/Unknown."
+        )]
         public IActionResult Get(string name)
         {
             if (ProcGenFinder.IsProcGen(name))

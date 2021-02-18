@@ -1,11 +1,17 @@
 ﻿# ED SystemPicker
 
-TODO: Write a project description
+This is a system to detect and extract systems mentioned in arbitrary text.
+
+This can allow you to detect systems and act based on the systems mentioned, for example providing links to find more information about the system.
 
 
 ## Usage
 
 ### Hosting your own instance
+
+todo: write more details here.
+
+Short version: Set up nginx as a reverse proxy in front of this app, with HTTPS.
 
 
 ## Contributing

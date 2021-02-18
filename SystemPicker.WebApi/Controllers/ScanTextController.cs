@@ -6,6 +6,7 @@ using SystemPicker.Matcher.Models;
 using SystemPicker.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SystemPicker.WebApi.Controllers
 {
@@ -25,6 +26,10 @@ namespace SystemPicker.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(List<SystemMatch>), 200)]
         [ProducesResponseType(typeof(List<SystemMatch>), 400)]
+        [SwaggerOperation(
+            Summary = "Find mentioned system names in arbitrary text.",
+            Description = "This will match your text against name patterns, as well as known sector and system names to find known system names, ids, and links to useful resources."
+        )]
         public async Task<IActionResult> Post([FromBody]ScanInput input)
         {
             var scanId = Guid.NewGuid();
